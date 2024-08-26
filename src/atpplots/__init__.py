@@ -1,1 +1,2 @@
-from .distribution.hist import AtpHistogramPlot
+from .axis import Axis
+from .distribution.hist import Bars, Histogram
