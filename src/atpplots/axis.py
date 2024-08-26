@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import holoviews as hv
-from pydantic import BaseModel, computed_field
 
 
 class Axis:

@@ -1,2 +1,4 @@
 from .axis import Axis
-from .distribution.hist import Bars, Histogram
+from .bars import Bars
+from .figure import Figure
+from .hist import Histogram
