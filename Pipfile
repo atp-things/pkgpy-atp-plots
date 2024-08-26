@@ -1,0 +1,37 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+# tools
+setuptools = "*"
+build = "*"
+pre-commit = "*"
+black = "*"
+flake8 = "*"
+pep8-naming = "*"
+pprintpp = "*"
+pytest = "*"
+pytest-xdist = "*"
+jsonschema = "*"
+pandas = "*"
+setuptools-git-versioning = "*"
+toml = "*"
+types-toml = "*"
+types-pyyaml = "*"
+pandas-stubs = "*"
+sqlalchemy = "*"
+psycopg2-binary = "*"
+mypy = "*"
+pyright = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
+
+[scripts]
+test_all = "pytest tests  -x"
+test_all_verbose = "pytest tests -v -x"
+test_all_parallel = "pytest tests -n=auto  -x"
