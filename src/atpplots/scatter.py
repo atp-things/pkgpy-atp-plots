@@ -5,11 +5,11 @@ from .axis import Axis
 from .figure import Figure
 
 
-class Histogram(Figure):
+class Scatter(Figure):
     def __init__(
         self,
-        counts: list | np.ndarray | None = None,
-        bin_edges: list | np.ndarray | None = None,
+        data_x: list | np.ndarray | None = None,
+        data_y: list | np.ndarray | None = None,
         title: str | None = None,
         axis_x: str | Axis | dict = "X",
         axis_y: str | Axis | dict = "Y",
@@ -25,19 +25,20 @@ class Histogram(Figure):
             height=height,
         )
 
-        self.hist: list | np.ndarray | None = counts
-        self.bin_edges: list | np.ndarray | None = bin_edges
+        self.data_x: list | np.ndarray | None = data_x
+        self.data_y: list | np.ndarray | None = data_y
         self.axis_x = Axis.init(axis_x)
         self.axis_y = Axis.init(axis_y)
         self.color: str = color
 
         return None
 
-    def to_holoviews(self) -> hv.Histogram:
-        ret = hv.Histogram(
-            (self.hist, self.bin_edges),
+    def to_holoviews(self) -> hv.Scatter:
+        ret = hv.Scatter(
+            (self.data_x, self.data_y),
             kdims=[self.axis_x.hv_dimension],
             vdims=[self.axis_y.hv_dimension],
+            label="Line speed - oven",
         ).opts(
             width=self.width,
             height=self.height,

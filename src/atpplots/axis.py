@@ -13,6 +13,7 @@ class Axis:
         self.id = id
         self.title = title
         self.unit = unit
+        # self.range
         return None
 
     @property
