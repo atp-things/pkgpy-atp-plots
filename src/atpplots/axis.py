@@ -9,10 +9,12 @@ class Axis:
         title: str,
         id: str = "",
         unit: str | None = None,
+        shared: bool = False,
     ):
         self.id = id
         self.title = title
         self.unit = unit
+        self.shared = shared
         # self.range
         return None
 

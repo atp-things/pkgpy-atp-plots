@@ -4,6 +4,8 @@ import numpy as np
 from .axis import Axis
 from .figure import Figure
 
+hv.extension("bokeh")
+
 
 class Scatter(Figure):
     def __init__(
@@ -16,6 +18,7 @@ class Scatter(Figure):
         width: int | None = None,
         height: int | None = None,
         color: str = "blue",
+        label: str | None = None,
     ):
         # inheritances
         Figure.__init__(
@@ -30,6 +33,7 @@ class Scatter(Figure):
         self.axis_x = Axis.init(axis_x)
         self.axis_y = Axis.init(axis_y)
         self.color: str = color
+        self.label: str | None = label
 
         return None
 
@@ -38,12 +42,13 @@ class Scatter(Figure):
             (self.data_x, self.data_y),
             kdims=[self.axis_x.hv_dimension],
             vdims=[self.axis_y.hv_dimension],
-            label="Line speed - oven",
+            label=self.label,
         ).opts(
             width=self.width,
             height=self.height,
             title=self.title,
             color=self.color,
+            shared_axes=False,
         )
 
         return ret
