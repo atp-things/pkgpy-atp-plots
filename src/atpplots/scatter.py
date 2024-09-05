@@ -18,7 +18,7 @@ class Scatter(Figure):
         width: int | None = None,
         height: int | None = None,
         color: str = "blue",
-        label: str | None = None,
+        label: str = "",
     ):
         # inheritances
         Figure.__init__(
@@ -33,7 +33,7 @@ class Scatter(Figure):
         self.axis_x = Axis.init(axis_x)
         self.axis_y = Axis.init(axis_y)
         self.color: str = color
-        self.label: str | None = label
+        self.label: str = label
 
         return None
 
