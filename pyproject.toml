@@ -94,7 +94,6 @@ ignore = [
     "C901", # too complex
     # "W191",  # indentation contains tabs
     "F401", # imported but unused
-    "ASYNC101", # no async function
     "E722", # do not use bare 'except'
 
 ]
