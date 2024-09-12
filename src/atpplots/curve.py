@@ -1,5 +1,6 @@
 import holoviews as hv
 import numpy as np
+from bokeh.plotting import show
 
 from .axis import Axis
 from .datavector import DataVector
@@ -101,7 +102,7 @@ class CurveDataVector(Figure):
 
         return None
 
-    def to_holoviews(self) -> hv.Scatter:
+    def to_holoviews(self) -> hv.Overlay:
         ret = []
 
         for data_vector in self.data_vector:
@@ -124,3 +125,6 @@ class CurveDataVector(Figure):
             )
 
         return hv.Overlay(ret)
+
+    def show_holoviews(self):
+        return show(hv.render(self.to_holoviews()))
