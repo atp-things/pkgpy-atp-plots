@@ -8,7 +8,6 @@ hv.extension("bokeh")
 data_x = np.linspace(0, 10, 100)
 data_y = [np.sin(2 * i) for i in data_x]
 
-
 plot_scatter = atpplots.Scatter(
     data_x,
     data_y,
