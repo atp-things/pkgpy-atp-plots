@@ -8,7 +8,7 @@ from .figure import Figure
 class Bars(Figure):
     def __init__(
         self,
-        counts: list | np.ndarray,
+        data_y: list | np.ndarray,
         ticks: list[str],
         title: str | None = None,
         axis_x: str | Axis | dict = "X",
@@ -26,7 +26,7 @@ class Bars(Figure):
             height=height,
         )
 
-        self.counts: list | np.ndarray = counts
+        self.data_y: list | np.ndarray = data_y
         self.ticks: list[str] = ticks
         self.labels: list[str] | None = labels
 
@@ -38,10 +38,10 @@ class Bars(Figure):
 
     def to_holoviews(self) -> hv.Overlay:
         bars = []
-        for i in range(len(self.counts)):
+        for i in range(len(self.data_y)):
             bars.append(
                 hv.Bars(
-                    [(self.ticks[i], self.counts[i])],
+                    [(self.ticks[i], self.data_y[i])],
                     self.axis_x.hv_dimension,
                     vdims=[self.axis_y.hv_dimension],
                     label=self.labels[i] if self.labels is not None else None,
