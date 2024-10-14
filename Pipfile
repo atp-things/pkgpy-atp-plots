@@ -4,13 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-# tools
 setuptools = "*"
 build = "*"
 pre-commit = "*"
-black = "*"
-flake8 = "*"
-pep8-naming = "*"
 pprintpp = "*"
 pytest = "*"
 pytest-xdist = "*"
@@ -25,6 +21,11 @@ sqlalchemy = "*"
 psycopg2-binary = "*"
 mypy = "*"
 pyright = "*"
+bokeh = "*"
+holoviews = "==1.19.0"
+panel = "*"
+packaging = "*"
+plotly = "*"
 
 [dev-packages]
 
