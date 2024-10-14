@@ -104,18 +104,6 @@ class CurveDataVector(Figure):
         ret = []
 
         for data_vector in self.data_vectors:
-            # curve = hv.Curve(
-            #     (data_vector.data_x, data_vector.data_y),
-            #     kdims=[self.axis_x.hv_dimension],
-            #     vdims=[self.axis_y.hv_dimension],
-            #     label=data_vector.label,
-            # ).opts(
-            #     color=data_vector.color,
-            #     shared_axes=False,
-            #     interpolation=interpolation_to_holoviews(
-            #         interpolation=data_vector.interpolation
-            #     ),
-            # )
             curve = data_vector.to_holoviews_scatter(
                 kdims=[self.axis_x.hv_dimension],
                 vdims=[self.axis_y.hv_dimension],
