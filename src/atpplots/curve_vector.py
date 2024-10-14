@@ -1,6 +1,4 @@
 import holoviews as hv
-import numpy as np
-import plotly.express as px
 import plotly.graph_objects as go
 from bokeh.plotting import figure as bokeh_figure
 
