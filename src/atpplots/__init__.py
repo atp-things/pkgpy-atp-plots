@@ -1,7 +1,8 @@
 from .axis import Axis
 from .bars import Bars
 from .confusion_matrix import ConfusionMatrix
-from .curve import Curve, CurveDataVector
+from .curve import Curve
+from .curve_vector import CurveDataVector
 from .datavector import DataVector
 from .figure import Figure
 from .hist import Histogram

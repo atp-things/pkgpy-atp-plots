@@ -12,14 +12,6 @@ data_vector_1 = atpplots.DataVector(
     color="red",
     label="sin",
 )
-data_vector_2 = atpplots.DataVector(
-    data_x=data_x,
-    data_y=data_y2,
-    color="blue",
-    label="cos",
-    alpha=0.1,
-    thickness=5,
-)
 
 axis_y = atpplots.Axis(
     title="y-axis",
@@ -29,8 +21,10 @@ axis_y = atpplots.Axis(
 )
 
 plot_curve = atpplots.CurveDataVector(
-    [data_vector_1, data_vector_2],
-    title="Scatter plot",
+    data_vector_1,
+    title=None,
+    width=800,
+    height=None,
     axis_y=axis_y,
 )
-plot_curve.show_bokeh()
+plot_curve.show_plotly()

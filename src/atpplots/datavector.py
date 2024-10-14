@@ -29,6 +29,9 @@ class DataVector:
         label: str = "",
         interpolation: str = "linear",
         mode: str = "lines",
+        alpha: float = 1.0,
+        thickness: int = 1,
+        line_style: str = "-",
     ):
         if interpolation not in interpolation_methods.keys():
             raise ValueError(
@@ -41,6 +44,9 @@ class DataVector:
         self.label: str = label
         self.mode: str = mode  # TODO: lines, markers, lines+markers
         self.interpolation: str = interpolation
+        self.alpha: float = alpha
+        self.thickness: int = thickness
+        self.line_style: str = line_style
 
         return None
 

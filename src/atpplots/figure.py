@@ -36,9 +36,17 @@ class Figure:
             "This method should be implemented in the child class."
         )
 
+    def to_bokeh(self):
+        raise NotImplementedError(
+            "This method should be implemented in the child class."
+        )
+
     # show methods
     def show_holoviews(self):
         return bokeh_show(hv.render(self.to_holoviews()))
+
+    def show_bokeh(self):
+        return bokeh_show(self.to_bokeh())
 
     def show_plotly(self):
         return self.to_plotly().show()
