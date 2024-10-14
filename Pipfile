@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-# tools
 setuptools = "*"
 build = "*"
 pre-commit = "*"
@@ -26,6 +25,7 @@ bokeh = "*"
 holoviews = "==1.19.0"
 panel = "*"
 packaging = "*"
+plotly = "*"
 
 [dev-packages]
 

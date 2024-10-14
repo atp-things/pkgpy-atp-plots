@@ -1,6 +1,7 @@
 import holoviews as hv
 import numpy as np
-from bokeh.plotting import show
+import plotly.express as px
+import plotly.graph_objects as go
 
 from .axis import Axis
 from .datavector import DataVector
@@ -65,6 +66,7 @@ class Curve(Figure):
 
 
 def interpolation_to_holoviews(interpolation: str) -> str:
+    # TODO: obsolete
     if interpolation == "linear":
         return "linear"
     elif interpolation == "ffill":
@@ -78,53 +80,79 @@ def interpolation_to_holoviews(interpolation: str) -> str:
 class CurveDataVector(Figure):
     def __init__(
         self,
-        data_vector: DataVector | list[DataVector],
-        title: str | None = None,
+        data_vectors: DataVector | list[DataVector],
         axis_x: str | Axis | dict = "X",
         axis_y: str | Axis | dict = "Y",
-        width: int | None = None,
-        height: int | None = None,
+        **kwargs,
     ):
         # inheritances
         Figure.__init__(
             self,
-            title=title,
-            width=width,
-            height=height,
+            **kwargs,
         )
 
         self.axis_x = Axis.init(axis_x)
         self.axis_y = Axis.init(axis_y)
 
-        if not isinstance(data_vector, list):
-            data_vector = [data_vector]
-        self.data_vector = data_vector
+        if not isinstance(data_vectors, list):
+            data_vectors = [data_vectors]
+        self.data_vectors = data_vectors
 
         return None
 
     def to_holoviews(self) -> hv.Overlay:
         ret = []
 
-        for data_vector in self.data_vector:
-            ret.append(
-                hv.Curve(
-                    (data_vector.data_x, data_vector.data_y),
-                    kdims=[self.axis_x.hv_dimension],
-                    vdims=[self.axis_y.hv_dimension],
-                    label=data_vector.label,
-                ).opts(
-                    width=self.width,
-                    height=self.height,
-                    title=self.title,
-                    color=data_vector.color,
-                    shared_axes=False,
-                    interpolation=interpolation_to_holoviews(
-                        interpolation=data_vector.interpolation
-                    ),
-                )
+        for data_vector in self.data_vectors:
+            # curve = hv.Curve(
+            #     (data_vector.data_x, data_vector.data_y),
+            #     kdims=[self.axis_x.hv_dimension],
+            #     vdims=[self.axis_y.hv_dimension],
+            #     label=data_vector.label,
+            # ).opts(
+            #     color=data_vector.color,
+            #     shared_axes=False,
+            #     interpolation=interpolation_to_holoviews(
+            #         interpolation=data_vector.interpolation
+            #     ),
+            # )
+            curve = data_vector.to_holoviews_scatter(
+                kdims=[self.axis_x.hv_dimension],
+                vdims=[self.axis_y.hv_dimension],
             )
 
-        return hv.Overlay(ret)
+            ret.append(curve)
 
-    def show_holoviews(self):
-        return show(hv.render(self.to_holoviews()))
+        return hv.Overlay(ret).opts(
+            width=self.width,
+            height=self.height,
+            title=self.title,
+        )
+
+    def _plotly_figure(self) -> go.Figure:
+        fig = go.Figure()
+        fig.update_layout(
+            title=self.title,
+            width=self.width,
+            height=self.height,
+            showlegend=self.showlegend,
+        )
+        fig.update_xaxes(
+            title_text=self.axis_x.label,
+            range=self.axis_x.range,
+            type=self.axis_x.scale,
+        )
+        fig.update_yaxes(
+            title_text=self.axis_y.label,
+            range=self.axis_y.range,
+            type=self.axis_y.scale,
+        )
+        return fig
+
+    def to_plotly(self) -> go.Figure:
+        fig = self._plotly_figure()
+
+        for data_vector in self.data_vectors:
+            fig.add_trace(data_vector.to_plotly_scatter())
+
+        return fig

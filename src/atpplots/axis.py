@@ -10,12 +10,21 @@ class Axis:
         id: str = "",
         unit: str | None = None,
         shared: bool = False,
+        range_min: float | None = None,
+        range_max: float | None = None,
+        scale: str = "linear",
     ):
+        if scale not in ["linear", "log"]:
+            raise ValueError(f"Scale method '{scale}' is not supported.")
+        self.scale = scale
         self.id = id
         self.title = title
         self.unit = unit
         self.shared = shared
-        # self.range
+        self.range_min = range_min
+        self.range_max = range_max
+        self.range = [self.range_min, self.range_max]
+
         return None
 
     @property
@@ -27,6 +36,8 @@ class Axis:
 
     @property
     def hv_dimension(self) -> hv.Dimension:
+        if self.id == "" or self.id is None:
+            return hv.Dimension(self.label)
         return hv.Dimension(self.id, label=self.label)
 
     @classmethod
