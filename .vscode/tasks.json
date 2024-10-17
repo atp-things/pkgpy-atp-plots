@@ -26,7 +26,7 @@
       "label": "preCommit - run all",
       "detail": "Run pre-commit hooks described in .pre-commit-config.yaml",
       "type": "shell",
-      "command": "pipenv run pre-commit run --all-files"
+      "command": "pre-commit run --all-files"
     },
     // PyTest
     {
