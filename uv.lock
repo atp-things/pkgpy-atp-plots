@@ -63,6 +63,11 @@ dependencies = [
     { name = "types-toml" },
 ]
 
+[package.dev-dependencies]
+dev = [
+    { name = "pytest" },
+]
+
 [package.metadata]
 requires-dist = [
     { name = "atptools", specifier = ">=0.0.26" },
@@ -85,6 +90,9 @@ requires-dist = [
     { name = "types-pyyaml" },
     { name = "types-toml" },
 ]
+
+[package.metadata.requires-dev]
+dev = [{ name = "pytest", specifier = ">=8.4.1" }]
 
 [[package]]
 name = "atptools"

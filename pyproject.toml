@@ -45,6 +45,11 @@ homepage = 'https://github.com/atp-things/pkgpy-atp-plots'
 repository = 'https://github.com/atp-things/pkgpy-atp-plots'
 PyPI = "https://pypi.org/project/atpplots/"
 
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+]
+
 # [tool.setuptools]
 # include-package-data = true
 [tool.setuptools.packages.find]
