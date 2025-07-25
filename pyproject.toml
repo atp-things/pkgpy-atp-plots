@@ -12,7 +12,7 @@ authors = [{ name = "Andraz Polak", email = "andrazpolak@gmail.com" }]
 description = "Set of plots."
 readme = "README.md"
 requires-python = '>=3.11'
-keywords = ["records", "csv", "dataset", "measurement"]
+keywords = ["plot", "csv", "dataset"]
 classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
@@ -28,6 +28,16 @@ dependencies = [
     "holoviews",
     "panel",
     "plotly",
+    "atptools>=0.0.26",
+    "packaging>=25.0",
+    "pyright>=1.1.403",
+    "mypy>=1.17.0",
+    "pprintpp>=0.4.0",
+    "pytest>=8.4.1",
+    "pytest-xdist>=3.8.0",
+    "jsonschema>=4.25.0",
+    "setuptools-git-versioning>=2.1.0",
+    "pre-commit>=4.2.0",
 ]
 
 [project.urls]
