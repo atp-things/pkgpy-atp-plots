@@ -33,7 +33,6 @@ dependencies = [
     "pyright>=1.1.403",
     "mypy>=1.17.0",
     "pprintpp>=0.4.0",
-    "pytest>=8.4.1",
     "pytest-xdist>=3.8.0",
     "jsonschema>=4.25.0",
     "setuptools-git-versioning>=2.1.0",
@@ -46,9 +45,7 @@ repository = 'https://github.com/atp-things/pkgpy-atp-plots'
 PyPI = "https://pypi.org/project/atpplots/"
 
 [dependency-groups]
-dev = [
-    "pytest>=8.4.1",
-]
+dev = ["pytest>=8.4.1", "pytest-xdist>=3.8.0"]
 
 # [tool.setuptools]
 # include-package-data = true

@@ -50,7 +50,7 @@ class DataVector:
 
         return None
 
-    # if plotly is available we can add this method to the class
+    # if plotly is available, method is added to the class
 
     if "go" in globals():
 
@@ -64,6 +64,7 @@ class DataVector:
             )
             return ret
 
+    # if holoviews available, method is added to the class
     if "hv" in globals():
 
         def to_holoviews_scatter(

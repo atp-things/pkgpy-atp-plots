@@ -1,7 +1,5 @@
 import holoviews as hv
 import numpy as np
-import plotly.express as px
-import plotly.graph_objects as go
 
 from .axis import Axis
 from .figure import Figure
@@ -9,7 +7,7 @@ from .figure import Figure
 hv.extension("bokeh")
 
 
-class Curve(Figure):
+class ScatterVector(Figure):
     def __init__(
         self,
         data_x: list | np.ndarray | None = None,
@@ -21,12 +19,7 @@ class Curve(Figure):
         height: int | None = None,
         color: str = "blue",
         label: str = "",
-        interpolation: str = "linear",
     ):
-        if interpolation not in ["linear", "ffill", "bfill"]:
-            raise ValueError(
-                f"Interpolation method '{interpolation}' is not supported."
-            )
         # inheritances
         Figure.__init__(
             self,
@@ -42,12 +35,10 @@ class Curve(Figure):
         self.color: str = color
         self.label: str = label
 
-        self.interpolation: str = interpolation
-
         return None
 
     def to_holoviews(self) -> hv.Scatter:
-        ret = hv.Curve(
+        ret = hv.Scatter(
             (self.data_x, self.data_y),
             kdims=[self.axis_x.hv_dimension],
             vdims=[self.axis_y.hv_dimension],
@@ -58,19 +49,6 @@ class Curve(Figure):
             title=self.title,
             color=self.color,
             shared_axes=False,
-            interpolation=interpolation_to_holoviews(interpolation=self.interpolation),
         )
 
         return ret
-
-
-def interpolation_to_holoviews(interpolation: str) -> str:
-    # TODO: obsolete
-    if interpolation == "linear":
-        return "linear"
-    elif interpolation == "ffill":
-        return "steps-post"
-    elif interpolation == "bfill":
-        return "steps-pre"
-    else:
-        raise ValueError(f"Interpolation method '{interpolation}' is not supported.")

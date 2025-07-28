@@ -55,7 +55,6 @@ dependencies = [
     { name = "pprintpp" },
     { name = "pre-commit" },
     { name = "pyright" },
-    { name = "pytest" },
     { name = "pytest-xdist" },
     { name = "setuptools-git-versioning" },
     { name = "toml" },
@@ -66,6 +65,7 @@ dependencies = [
 [package.dev-dependencies]
 dev = [
     { name = "pytest" },
+    { name = "pytest-xdist" },
 ]
 
 [package.metadata]
@@ -83,7 +83,6 @@ requires-dist = [
     { name = "pprintpp", specifier = ">=0.4.0" },
     { name = "pre-commit", specifier = ">=4.2.0" },
     { name = "pyright", specifier = ">=1.1.403" },
-    { name = "pytest", specifier = ">=8.4.1" },
     { name = "pytest-xdist", specifier = ">=3.8.0" },
     { name = "setuptools-git-versioning", specifier = ">=2.1.0" },
     { name = "toml" },
@@ -92,7 +91,10 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
-dev = [{ name = "pytest", specifier = ">=8.4.1" }]
+dev = [
+    { name = "pytest", specifier = ">=8.4.1" },
+    { name = "pytest-xdist", specifier = ">=3.8.0" },
+]
 
 [[package]]
 name = "atptools"
