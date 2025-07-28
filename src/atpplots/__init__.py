@@ -1,4 +1,5 @@
 from .axis import Axis
+from .bar_df import BarDf
 from .bars import Bars
 from .confusion_matrix import ConfusionMatrix
 from .curve import Curve
