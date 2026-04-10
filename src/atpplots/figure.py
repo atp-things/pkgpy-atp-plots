@@ -1,6 +1,4 @@
 import holoviews as hv
-import plotly.express as px
-import plotly.graph_objects as go
 from bokeh.plotting import show as bokeh_show
 
 
@@ -31,7 +29,7 @@ class Figure:
             "This method should be implemented in the child class."
         )
 
-    def to_plotly(self) -> go.Figure:
+    def to_plotly(self):
         raise NotImplementedError(
             "This method should be implemented in the child class."
         )
