@@ -20,9 +20,10 @@ class Curve(Figure):
         axis_y: str | Axis | dict = "Y",
         width: int | None = None,
         height: int | None = None,
-        color: str = "blue",
+        color: str | None = None,
         label: str = "",
         interpolation: str = "linear",
+        shared_axes: bool = True,
     ):
         if interpolation not in ["linear", "ffill", "bfill"]:
             raise ValueError(
@@ -40,14 +41,14 @@ class Curve(Figure):
         self.data_y: list | np.ndarray | None = data_y
         self.axis_x = Axis.init(axis_x)
         self.axis_y = Axis.init(axis_y)
-        self.color: str = color
+        self.color: str | None = color
         self.label: str = label
-
+        self.shared_axes: bool = shared_axes
         self.interpolation: str = interpolation
 
         return None
 
-    def to_holoviews(self) -> hv.Scatter:
+    def to_holoviews(self) -> hv.Curve:
         ret = hv.Curve(
             (self.data_x, self.data_y),
             kdims=[self.axis_x.hv_dimension],
@@ -57,10 +58,11 @@ class Curve(Figure):
             width=self.width,
             height=self.height,
             title=self.title,
-            color=self.color,
-            shared_axes=False,
+            shared_axes=self.shared_axes,
             interpolation=interpolation_to_holoviews(interpolation=self.interpolation),
         )
+        if self.color is not None:
+            ret = ret.opts(color=self.color)
 
         return ret
 
